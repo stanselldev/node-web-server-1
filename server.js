@@ -3,6 +3,10 @@ const hbs = require('hbs');
 const fs = require('fs');
 const port = process.env.PORT || 3000;
 
+var screenshot = require('screenshot-stream');
+const stream = screenshot('https://quiet-depths-30424.herokuapp.com/', '1024x768', {crop: true});
+stream.pipe(fs.createWriteStream('google.com-1024x768.png'));
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
